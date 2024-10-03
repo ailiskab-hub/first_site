@@ -1,4 +1,8 @@
+import os
 from django.shortcuts import render, redirect
+
+
+curr_path = os.path.dirname(os.path.abspath(__file__))
 
 posts = [
     {
@@ -29,6 +33,9 @@ def contactpage(request):
         return render(request, template_name='contact.html', context={"page":"contact"})
     else:
         print(request.POST)
-        with open('./contact_results.txt', 'a') as file:
+        with open(os.path.join(curr_path, 'contact_results.txt'), 'a') as file:
             file.writelines(f'Name {request.POST["name"]}, Message {request.POST["message"]} \n')
-        return redirect(contactpage)
+        return redirect(thanks)
+
+def thanks(request):
+    return render(request, template_name='thanks.html', context={"page": 'thanks'})
