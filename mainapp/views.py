@@ -29,6 +29,6 @@ def contactpage(request):
         return render(request, template_name='contact.html', context={"page":"contact"})
     else:
         print(request.POST)
-        with open('C:/Users/Алиса/prog programs/PycharmProjects/pythonProject/backed/djang_course/blogsite/mainapp/contact_results.txt', 'a') as file:
+        with open('./contact_results.txt', 'a') as file:
             file.writelines(f'Name {request.POST["name"]}, Message {request.POST["message"]} \n')
         return redirect(contactpage)
